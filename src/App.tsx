@@ -1,4 +1,5 @@
 import { CrmLab } from "./components/CrmLab";
+import { EvidencePacket } from "./components/EvidencePacket";
 import { GeneratedWidgetLab } from "./components/GeneratedWidgetLab";
 
 export function App() {
@@ -15,6 +16,7 @@ export function App() {
       </section>
       <CrmLab />
       <GeneratedWidgetLab />
+      <EvidencePacket />
     </main>
   );
 }
