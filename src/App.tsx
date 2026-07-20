@@ -1,8 +1,4 @@
-const modes = [
-  ["Static", "Known component selected from a trusted catalog."],
-  ["Declarative", "Typed UI spec rendered by a trusted renderer."],
-  ["Generated", "Sandboxed artifact with a strict manifest and privacy split."],
-];
+import { CrmLab } from "./components/CrmLab";
 
 export function App() {
   return (
@@ -16,9 +12,7 @@ export function App() {
         <h1 id="overview-heading">Choose a UI mode, then prove it is safe to render.</h1>
         <p className="intro">A local lab for reversible CRM adaptations and constrained generated widgets. No model call is required.</p>
       </section>
-      <section className="mode-list" aria-label="Rendering modes">
-        {modes.map(([name, detail]) => <article key={name}><h2>{name}</h2><p>{detail}</p></article>)}
-      </section>
+      <CrmLab />
     </main>
   );
 }
