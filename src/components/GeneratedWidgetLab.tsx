@@ -1,4 +1,6 @@
-import { modelSafeSummary, userRichOutput } from "../core/messages";
+import { useState } from "react";
+import { refreshSavedDashboard, saveDashboardWidget, validPipelineQueryResult } from "../core/dashboard";
+import { modelSafeSummary } from "../core/messages";
 import { generatedDashboardManifest, validateManifest } from "../core/uiContracts";
 
 const rejectedManifest = { artifactId: "missing-csp", intentId: "dashboard-overview" as const, allowedDomains: [], allowedScripts: [], connectTargets: [], dataFields: [] };
@@ -8,9 +10,12 @@ function dashboardSrcDoc(output: string) {
 }
 
 export function GeneratedWidgetLab() {
+  const [refreshCount, setRefreshCount] = useState(0);
   const manifestResult = validateManifest(generatedDashboardManifest);
   const rejectedResult = validateManifest(rejectedManifest);
+  const savedWidget = saveDashboardWidget(generatedDashboardManifest, validPipelineQueryResult);
   const canRender = manifestResult.valid;
+  const refreshed = savedWidget.saved ? refreshSavedDashboard(savedWidget.widget, validPipelineQueryResult) : null;
 
   return (
     <section className="generated-lab" aria-labelledby="generated-heading">
@@ -23,7 +28,7 @@ export function GeneratedWidgetLab() {
       </div>
       <div className="generated-workspace">
         <section className="widget-frame" aria-label="Generated dashboard widget">
-          {canRender ? <iframe referrerPolicy="no-referrer" sandbox="" srcDoc={dashboardSrcDoc(userRichOutput(generatedDashboardManifest))} title="Synthetic pipeline dashboard" /> : <p>Manifest rejected; widget not rendered.</p>}
+          {canRender && refreshed ? <iframe referrerPolicy="no-referrer" sandbox="" srcDoc={dashboardSrcDoc(refreshed.userOutput)} title="Synthetic pipeline dashboard" /> : <p>Manifest rejected; widget not rendered.</p>}
         </section>
         <aside className="manifest-panel" aria-labelledby="manifest-heading">
           <p className="eyebrow">Manifest</p>
@@ -35,6 +40,10 @@ export function GeneratedWidgetLab() {
             <div><dt>Provenance</dt><dd>{generatedDashboardManifest.provenance.generator}</dd></div>
           </dl>
           <p className="model-output"><strong>Model-visible summary</strong>{modelSafeSummary(generatedDashboardManifest)}</p>
+          <div className="refresh-status">
+            <button className="secondary-button" onClick={() => setRefreshCount((count) => count + 1)} type="button">Refresh saved widget</button>
+            <span>{refreshCount === 0 ? "Saved specification ready" : `Deterministic refresh ${refreshCount} complete`}</span>
+          </div>
           {!rejectedResult.valid && <p className="rejected-note">Bad fixture rejected before render: {rejectedResult.errors[0]}</p>}
         </aside>
       </div>
