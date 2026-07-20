@@ -37,4 +37,16 @@ h1 { font-size: 2.35rem; letter-spacing: 0; line-height: 1.08; margin: 8px 0 16p
 .patch-audit li span { color: #435568; line-height: 1.4; }
 .patch-audit li small { color: #607186; line-height: 1.4; }
 .policy-status { border-top: 1px solid #d4dce5; color: #1e633e !important; font-weight: 700; margin-top: 20px !important; padding-top: 14px; }
-@media (max-width: 700px) { .app-shell { padding: 20px 16px 48px; } .masthead { align-items: flex-start; flex-direction: column; } .overview { padding: 56px 0 36px; } h1 { font-size: 1.85rem; } .section-heading { align-items: start; flex-direction: column; gap: 0; } .section-heading > p { max-width: none; text-align: left; } .variant-tabs { flex-direction: column; } .crm-workspace { grid-template-columns: 1fr; } .patch-audit { border-left: 0; border-top: 1px solid #d4dce5; padding: 22px 0 0; } }
+.generated-lab { border-top: 1px solid #d4dce5; margin-top: 52px; padding-top: 28px; }
+.generated-workspace { display: grid; gap: 36px; grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.8fr); }
+.widget-frame { background: #e9f0f8; border: 1px solid #c5d3e1; min-height: 224px; padding: 12px; }
+.widget-frame iframe { background: #f8fbff; border: 1px solid #b7c5d4; display: block; height: 198px; width: 100%; }
+.manifest-panel { border-left: 1px solid #d4dce5; padding-left: 24px; }
+.manifest-panel h3 { font-size: 1.1rem; margin: 5px 0 14px; }
+.manifest-panel dl { border-top: 1px solid #d4dce5; margin: 0; }
+.manifest-panel dl div { border-bottom: 1px solid #d4dce5; display: grid; gap: 4px; padding: 9px 0; }
+.manifest-panel dt { color: #607186; font-size: 0.82rem; }
+.manifest-panel dd { margin: 0; }
+.model-output { color: #435568; display: grid; gap: 5px; line-height: 1.45; }
+.rejected-note { border-top: 1px solid #d4dce5; color: #8b3e25; line-height: 1.45; padding-top: 12px; }
+@media (max-width: 700px) { .app-shell { padding: 20px 16px 48px; } .masthead { align-items: flex-start; flex-direction: column; } .overview { padding: 56px 0 36px; } h1 { font-size: 1.85rem; } .section-heading { align-items: start; flex-direction: column; gap: 0; } .section-heading > p { max-width: none; text-align: left; } .variant-tabs { flex-direction: column; } .crm-workspace, .generated-workspace { grid-template-columns: 1fr; } .patch-audit, .manifest-panel { border-left: 0; border-top: 1px solid #d4dce5; padding: 22px 0 0; } }

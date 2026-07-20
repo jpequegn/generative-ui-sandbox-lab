@@ -1,4 +1,5 @@
 import { CrmLab } from "./components/CrmLab";
+import { GeneratedWidgetLab } from "./components/GeneratedWidgetLab";
 
 export function App() {
   return (
@@ -13,6 +14,7 @@ export function App() {
         <p className="intro">A local lab for reversible CRM adaptations and constrained generated widgets. No model call is required.</p>
       </section>
       <CrmLab />
+      <GeneratedWidgetLab />
     </main>
   );
 }
